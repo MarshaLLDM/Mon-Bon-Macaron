@@ -515,7 +515,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _counterTopPoint: {fileID: 9097888254458262407}
   _fryingRecipeSOArray:
-  - {fileID: 11400000, guid: 55865580bbcf45948b523f7ac0e6c069, type: 2}
+  - {fileID: 11400000, guid: a116885f83a8c5647b428cfdd14a7982, type: 2}
+  - {fileID: 11400000, guid: 36811d1ac154e3e4b8448ee7ea46c030, type: 2}
+  - {fileID: 11400000, guid: ac2f013c7458b7945a500df7df71211a, type: 2}
+  - {fileID: 11400000, guid: f3996de18eb136b4182812b038cd9d69, type: 2}
   _burningRecipeSOArray:
   - {fileID: 11400000, guid: f2c811f002fad414589d8289fad9ed77, type: 2}
 --- !u!4 &9097888254458262407 stripped
