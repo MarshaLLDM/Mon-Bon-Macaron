@@ -7,7 +7,7 @@ using static CuttingCounter;
 public class StoveCounter : BaseCounter, IHasProgress
 {
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged; //Обработка визуального прогресса
-    public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
+    public event EventHandler <OnStateChangedEventArgs> OnStateChanged;
     public class OnStateChangedEventArgs : EventArgs
     {
         public State _state;
@@ -40,8 +40,7 @@ public class StoveCounter : BaseCounter, IHasProgress
 
     private void Update()
     {
-        if (HasKitchenObject())
-        {
+        if (HasKitchenObject()) {
             switch (_state)
             {
                 case State.Idle:
@@ -63,22 +62,17 @@ public class StoveCounter : BaseCounter, IHasProgress
 
                         LinkKitchenObject.SpawnKitchenObject(_fryingRecipeSO.output, this); //Создание нового объекта
 
-                        _state = State.Burned; //Переключение состояния плиты, где объект приготовился, но продолжает жариться
+                        _state = State.Fried; //Переключение состояния плиты, где объект приготовился, но продолжает жариться
                         _burningTimer = 0f;
-                      //  _burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
+                        _burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
 
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
                         {
                             _state = _state
                         });
-
-                        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
-                        {
-                            _progressNormalized = 0f
-                        });
                     }
                     break;
-              /*  case State.Fried:
+                case State.Fried:
                     _burningTimer += Time.deltaTime;
 
 
@@ -109,11 +103,11 @@ public class StoveCounter : BaseCounter, IHasProgress
                         });
 
                     }
-                    break; */
+                    break;
                 case State.Burned:
                     break;
             }
-            //  Debug.Log(_state);
+          //  Debug.Log(_state);
         }
     }
 
@@ -227,7 +221,7 @@ public class StoveCounter : BaseCounter, IHasProgress
         return null;
     }
 
-   /* private BurningRecipeSO GetBurningRecipeSOWithInput(KitchenObject _inputKitchenObjectSO)
+    private BurningRecipeSO GetBurningRecipeSOWithInput(KitchenObject _inputKitchenObjectSO)
     {
         foreach (BurningRecipeSO _burningRecipeSO in _burningRecipeSOArray)
         {
@@ -237,7 +231,7 @@ public class StoveCounter : BaseCounter, IHasProgress
             }
         }
         return null;
-    }*/
+    }
 
     public bool IsFried()
     {
