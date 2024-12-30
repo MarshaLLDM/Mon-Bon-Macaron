@@ -1,34 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StoveBurningFlashBarUI : MonoBehaviour
 {
-    //Визуализация меняющееся цвета индикатора прогресса бара
-
-    private const string IS_FLASHING = "IsFlashing"; //Параметр для аниматора
-
     [SerializeField] private StoveCounter _stoveCounter;
-
-    private Animator _animator;
-
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
+    [SerializeField] private Image _progressBarImage; // Добавляем ссылку на Image компонента прогресса
 
     private void Start()
     {
         _stoveCounter.OnProgressChanged += stoveCounter_OnProgressChanged;
-
-        _animator.SetBool(IS_FLASHING, false);
     }
 
     private void stoveCounter_OnProgressChanged(object sender, IHasProgress.OnProgressChangedEventArgs e)
     {
-        float burnShowProgressAmount = .5f;
-        bool _show = _stoveCounter.IsFried() && e._progressNormalized >= burnShowProgressAmount; //Когда будет нужное состояние печи и прогресс больше 0,5
-
-        _animator.SetBool(IS_FLASHING, _show);
+        // Плавное изменение цвета прогресса в зависимости от значения прогресса
+        if (e._progressNormalized < 0.5f)
+        {
+            // От зеленого к желтому
+            _progressBarImage.color = Color.Lerp(Color.red, Color.yellow, e._progressNormalized * 2);
+        }
+        else
+        {
+            // От желтого к красному
+            _progressBarImage.color = Color.Lerp(Color.yellow, Color.green, (e._progressNormalized - 0.5f) * 2);
+        }
     }
 }

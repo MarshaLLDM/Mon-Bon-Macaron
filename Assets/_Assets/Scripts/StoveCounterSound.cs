@@ -22,19 +22,11 @@ public class StoveCounterSound : MonoBehaviour
     private void Start()
     {
         _stoveCounter.OnStateChanged += _stoveCounter_OnStateChanged;
-        _stoveCounter.OnProgressChanged += _stoveCounter_OnProgressChanged;
-    }
-
-    private void _stoveCounter_OnProgressChanged(object sender, IHasProgress.OnProgressChangedEventArgs e)
-    {
-
-        float burnShowProgressAmount = .5f;
-        _playWarningSound = _stoveCounter.IsFried() && e._progressNormalized >= burnShowProgressAmount;
     }
 
     private void _stoveCounter_OnStateChanged(object sender, StoveCounter.OnStateChangedEventArgs e)
     {
-        bool _playSound = e._state == StoveCounter.State.Frying || e._state == StoveCounter.State.Fried;
+        bool _playSound = e._state == StoveCounter.State.Frying;
         if (_playSound)
         {
             _audioSource.Play();

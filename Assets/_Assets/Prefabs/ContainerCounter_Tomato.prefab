@@ -58,6 +58,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2696277989666674687, guid: c771fc07a3f687a4d93f5d3ab824f585,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2696277989666674687, guid: c771fc07a3f687a4d93f5d3ab824f585,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2696277989666674687, guid: c771fc07a3f687a4d93f5d3ab824f585,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 4151577738301000382, guid: c771fc07a3f687a4d93f5d3ab824f585,
         type: 3}
       propertyPath: m_Name
@@ -65,10 +80,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5366553487903857814, guid: c771fc07a3f687a4d93f5d3ab824f585,
         type: 3}
+      propertyPath: m_Size.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366553487903857814, guid: c771fc07a3f687a4d93f5d3ab824f585,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366553487903857814, guid: c771fc07a3f687a4d93f5d3ab824f585,
+        type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 91e8fe3de9249fc44b7bdd8050062896,
+      objectReference: {fileID: 21300000, guid: a70707bea68f1d64484c8ae86edd82d9,
         type: 3}
+    - target: {fileID: 5366553487903857814, guid: c771fc07a3f687a4d93f5d3ab824f585,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -7,7 +7,7 @@ using static CuttingCounter;
 public class StoveCounter : BaseCounter, IHasProgress
 {
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged; //Обработка визуального прогресса
-    public event EventHandler <OnStateChangedEventArgs> OnStateChanged;
+    public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
     public class OnStateChangedEventArgs : EventArgs
     {
         public State _state;
@@ -16,8 +16,6 @@ public class StoveCounter : BaseCounter, IHasProgress
     {
         Idle, //Состояние ожидания плиты
         Frying, //Объект жарится на плите
-        Fried, //Объект готов, но продлолжает жариться
-        Burned, //Сгоревший объект
     }
 
     // Готовка плиты
@@ -30,8 +28,8 @@ public class StoveCounter : BaseCounter, IHasProgress
 
     private float _fryingTimer; //Таймер жарки мяса
     private FryingRecipeSO _fryingRecipeSO;
-    private float _burningTimer; //Таймер горения
-    private BurningRecipeSO _burningRecipeSO;
+  /*  private float _burningTimer; //Таймер горения
+    private BurningRecipeSO _burningRecipeSO;*/
 
     private void Start()
     {
@@ -40,7 +38,8 @@ public class StoveCounter : BaseCounter, IHasProgress
 
     private void Update()
     {
-        if (HasKitchenObject()) {
+        if (HasKitchenObject())
+        {
             switch (_state)
             {
                 case State.Idle:
@@ -62,52 +61,23 @@ public class StoveCounter : BaseCounter, IHasProgress
 
                         LinkKitchenObject.SpawnKitchenObject(_fryingRecipeSO.output, this); //Создание нового объекта
 
-                        _state = State.Fried; //Переключение состояния плиты, где объект приготовился, но продолжает жариться
-                        _burningTimer = 0f;
-                        _burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
+                        _state = State.Idle; //Переключение состояния плиты, где объект приготовился, но продолжает жариться
+                      //  _burningTimer = 0f;
+                      //  _burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
 
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
                         {
                             _state = _state
                         });
-                    }
-                    break;
-                case State.Fried:
-                    _burningTimer += Time.deltaTime;
-
-
-                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
-                    {
-                        _progressNormalized = _burningTimer / _burningRecipeSO._burningTimeMax
-                    });
-
-
-                    if (_burningTimer > _burningRecipeSO._burningTimeMax)
-                    {
-                        //Если значение больше, то блюдо прожарилось
-                        GetKitchenObject().DestroyObject(); //Берем объект и уничтожаем его
-
-                        LinkKitchenObject.SpawnKitchenObject(_burningRecipeSO.output, this); //Создание нового объекта
-
-                        _state = State.Burned; //Переключение на сгоревший объект
-
-                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
-                        {
-                            _state = _state
-                        });
-
 
                         OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                         {
                             _progressNormalized = 0f
                         });
-
                     }
                     break;
-                case State.Burned:
-                    break;
             }
-          //  Debug.Log(_state);
+            //  Debug.Log(_state);
         }
     }
 
@@ -219,22 +189,5 @@ public class StoveCounter : BaseCounter, IHasProgress
             }
         }
         return null;
-    }
-
-    private BurningRecipeSO GetBurningRecipeSOWithInput(KitchenObject _inputKitchenObjectSO)
-    {
-        foreach (BurningRecipeSO _burningRecipeSO in _burningRecipeSOArray)
-        {
-            if (_burningRecipeSO.input == _inputKitchenObjectSO)
-            {
-                return _burningRecipeSO;
-            }
-        }
-        return null;
-    }
-
-    public bool IsFried()
-    {
-        return _state == State.Fried;
     }
 }

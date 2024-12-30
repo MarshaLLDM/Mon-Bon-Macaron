@@ -14,11 +14,6 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
 
     [SerializeField] private Transform _counterTopPoint;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 0b1e70b (test)
-
     private LinkKitchenObject _onkitchenObjects; // что лежит на контейнере
 
     public virtual void Interact(Player _player)
