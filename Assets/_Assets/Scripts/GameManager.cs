@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     private float _waitingToStartTimer = 1f; //Таймер ожидания игры
     private float _сounterDownToStartTimer = 3f; //Таймер начала игры
     private float _gameToStartTimer; //Таймер ожидания игры
-    private float _gameToStartTimerMax = 60f; //Таймер максимального времени игры
+    private float _gameToStartTimerMax = 160f; //Таймер максимального времени игры
    // private bool _isGamePaused = false;
 
     private void Awake()

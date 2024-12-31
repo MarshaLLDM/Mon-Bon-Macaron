@@ -5,49 +5,80 @@ using UnityEngine;
 
 public class PlateKitchenObject : LinkKitchenObject
 {
-    // Start is called before the first frame update
+    //Скрипт для добавления ингридиентов на тарелку
+
 
     public event EventHandler<OnIngredientAddedEventArgs> OnIngredientAdded;
-    public class OnIngredientAddedEventArgs: EventArgs
+    public class OnIngredientAddedEventArgs : EventArgs
     {
         public KitchenObject _kitchenObject;
     }
 
-
-    [SerializeField] private List<KitchenObject> _validKitchenObjectsList; //Список допустимых объектов, которые можно положить на тарелку
+    [Header("Допустимые ингридиенты")]
+    [SerializeField] private List<KitchenObject> _validKitchenObjectsList1; // Первый список допустимых объектов
+    [SerializeField] private List<KitchenObject> _validKitchenObjectsList2; // Второй список допустимых объектов
+    [SerializeField] private List<KitchenObject> _validKitchenObjectsList3; // Третий список допустимых объектов
 
     private List<KitchenObject> _kitchenObjectsList;
+    private List<KitchenObject> _currentValidList; // Текущий активный список допустимых объектов
 
     private void Awake()
     {
         _kitchenObjectsList = new List<KitchenObject>();
+        _currentValidList = null; // Изначально текущий список не установлен
     }
 
     public bool TryAddIngredient(KitchenObject _kitchenObject)
     {
-        if (!_validKitchenObjectsList.Contains(_kitchenObject)) //Если в списке есть допустимый объект и он совпадает, который мы хотим добавить, то происходит добавление
+        if (_currentValidList == null)
         {
-            return false; //Объекта в списке нет
+            // Если текущий список не установлен, проверяем все списки
+            if (IsValidIngredient(_kitchenObject, _validKitchenObjectsList1))
+            {
+                _currentValidList = _validKitchenObjectsList1;
+            }
+            else if (IsValidIngredient(_kitchenObject, _validKitchenObjectsList2))
+            {
+                _currentValidList = _validKitchenObjectsList2;
+            }
+            else if (IsValidIngredient(_kitchenObject, _validKitchenObjectsList3))
+            {
+                _currentValidList = _validKitchenObjectsList3;
+            }
+            else
+            {
+                return false; // Ингредиент не найден ни в одном из списков
+            }
         }
+
+        // Проверка допустимости ингредиента в текущем списке
+        if (!IsValidIngredient(_kitchenObject, _currentValidList))
+        {
+            return false; // Объект не допустим для добавления
+        }
+
         if (_kitchenObjectsList.Contains(_kitchenObject))
         {
-            //Проверка есть-ди в списке эти кухонные предметы
+            // Проверка на дублирование
             return false;
         }
-        else
-        {
-            _kitchenObjectsList.Add(_kitchenObject);
 
-            OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs
-            {
-                _kitchenObject = _kitchenObject
-            });
-            return true;
-        }
+        _kitchenObjectsList.Add(_kitchenObject);
+
+        OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs
+        {
+            _kitchenObject = _kitchenObject
+        });
+        return true;
     }
+
+    private bool IsValidIngredient(KitchenObject _kitchenObject, List<KitchenObject> validList)
+    {
+        return validList.Contains(_kitchenObject);
+    }
+
     public List<KitchenObject> GetKitchenObjectsList()
     {
         return _kitchenObjectsList;
     }
-    
 }
