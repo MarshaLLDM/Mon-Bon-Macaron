@@ -47,11 +47,11 @@ public class DeliveryManager : MonoBehaviour
 
     public void DeliverRecipe(PlateKitchenObject _plateKitchenObject) //Функция доставки рецепта
     {
-        for (int i=0;  i < _waitingRecipeSOList.Count; i++) 
+        for (int i = 0; i < _waitingRecipeSOList.Count; i++)
         {
             RecipeSO _waitingRecipeSO = _waitingRecipeSOList[i];
 
-            if(_waitingRecipeSO._kitchenObjects.Count == _plateKitchenObject.GetKitchenObjectsList().Count) //Есть нужное кол-во рецептов
+            if (_waitingRecipeSO._kitchenObjects.Count == _plateKitchenObject.GetKitchenObjectsList().Count) //Есть нужное кол-во рецептов
             {
                 bool _plateContentsMatchesRecipe = true;
                 foreach (KitchenObject _recipeKitchenObjectSO in _waitingRecipeSO._kitchenObjects) //Проверка всех ингредиентов на рецепте
@@ -59,7 +59,7 @@ public class DeliveryManager : MonoBehaviour
                     bool _ingredientFound = false;
                     foreach (KitchenObject _plateKitchenObjectSO in _plateKitchenObject.GetKitchenObjectsList()) //Проверка всех ингредиентов на тарелке
                     {
-                        if(_plateKitchenObjectSO == _recipeKitchenObjectSO) //Проверка совпадают ли рецепты, которые из листа ожидания со списком рецептом
+                        if (_plateKitchenObjectSO == _recipeKitchenObjectSO) //Проверка совпадают ли рецепты, которые из листа ожидания со списком рецептом
                         {
                             //Они совпадают
                             _ingredientFound = true;
@@ -72,7 +72,7 @@ public class DeliveryManager : MonoBehaviour
                         _plateContentsMatchesRecipe = false;
                     }
                 }
-                if(_plateContentsMatchesRecipe)
+                if (_plateContentsMatchesRecipe)
                 {
                     //Игрок приготов правильный рецепт
 
@@ -82,6 +82,7 @@ public class DeliveryManager : MonoBehaviour
 
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
+                    GameManager.Instance.IncreaseGameTime(15f); // Увеличение времени на 15 секунд
                     return;
                 }
             }
@@ -89,7 +90,10 @@ public class DeliveryManager : MonoBehaviour
         //Не один из рецептов не подходит
         //Игрок приготовоил неправильный рецепт
         OnRecipeFailed?.Invoke(this, EventArgs.Empty);
+        GameManager.Instance.ReduceGameTime(30f); // Уменьшение времени на 30 секунд
     }
+
+
     public List<RecipeSO> GetWaitingRecipeSOList()
     {
         return _waitingRecipeSOList;

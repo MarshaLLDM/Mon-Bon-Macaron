@@ -71,6 +71,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ReduceGameTime(float seconds) //Функция дял уменьшения времени игры
+    {
+        _gameToStartTimer -= seconds;
+        if (_gameToStartTimer < 0f)
+        {
+            _gameToStartTimer = 0f;
+            _state = State.GameOver;
+            OnStatedChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public void IncreaseGameTime(float seconds) //Функция для увелечения времени игры
+    {
+        _gameToStartTimer += seconds;
+    }
+
+
     public bool IsGamePlaing()
     {
         return _state == State.GamePlaying; //Функция позволяет играть в данном режиме

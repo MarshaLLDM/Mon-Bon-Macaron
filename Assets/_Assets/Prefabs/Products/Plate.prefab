@@ -412,7 +412,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d29054a37488e0d448e09b0c212129b7, type: 2}
   _validKitchenObjectsList2:
   - {fileID: 11400000, guid: ab0a43fafe5ef0948b1fdb90a7d3f1c9, type: 2}
-  - {fileID: 11400000, guid: ee7d4cfe68e45d94e8bfeee4cef0a1cf, type: 2}
+  - {fileID: 11400000, guid: d1490db8ae0ba1b429174754badbef18, type: 2}
   - {fileID: 11400000, guid: e092fa1282abd854f94f567e3a0a2c69, type: 2}
   _validKitchenObjectsList3:
   - {fileID: 11400000, guid: d1490db8ae0ba1b429174754badbef18, type: 2}

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DeliveryResultUI : MonoBehaviour
 {
-    //Визуадизация иконки правильности доставки
+    //Визуализация иконки правильности доставки
 
     private const string POPUP = "Popup";
 
