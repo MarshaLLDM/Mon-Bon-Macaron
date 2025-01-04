@@ -11,6 +11,7 @@ public class GameStartCountUI : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _countStartText;
 
+
     private Animator _animator;
 
     private int _previousCountDownNumber;

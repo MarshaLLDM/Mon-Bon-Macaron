@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ReduceGameTime(float seconds) //Функция дял уменьшения времени игры
+    public void ReduceGameTime(float seconds) //Функция для уменьшения времени игры
     {
         _gameToStartTimer -= seconds;
         if (_gameToStartTimer < 0f)
@@ -105,6 +105,11 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver() //Функция для завершения игры
     {
         return _state == State.GameOver;
+    }
+
+    public float GetGamePlayingTimer()
+    {
+       return _gameToStartTimer;
     }
 
     public float GetGamePlayingTimerNormalized() //Функция максимального времени игры

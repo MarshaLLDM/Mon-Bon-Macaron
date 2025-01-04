@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Salat
   m_EditorClassIdentifier: 
   _kitchenObjects:
-  - {fileID: 11400000, guid: 3d321d075abb2504a8edf16c8ee59623, type: 2}
-  - {fileID: 11400000, guid: 75d70c3f2b715e947bc48092d3c90557, type: 2}
+  - {fileID: 11400000, guid: ab0a43fafe5ef0948b1fdb90a7d3f1c9, type: 2}
+  - {fileID: 11400000, guid: d1490db8ae0ba1b429174754badbef18, type: 2}
   recipeName: Salat
