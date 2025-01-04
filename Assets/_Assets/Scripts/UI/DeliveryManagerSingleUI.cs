@@ -46,10 +46,7 @@ public class DeliveryManagerSingleUI : MonoBehaviour
             _iconTransform.gameObject.SetActive(true);
             _iconTransform.GetComponent<Image>().sprite = _kitchenObject._sprite;
         }
-    }
 
-    private void Update()
-    {
         if (!GameManager.Instance.IsGamePlaing())
         {
             return;
@@ -64,5 +61,10 @@ public class DeliveryManagerSingleUI : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Update()
+    {
+
     }
 }

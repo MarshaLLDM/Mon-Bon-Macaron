@@ -10,7 +10,7 @@ public class DeliveryManager : MonoBehaviour
     public event EventHandler OnRecipeCompleted;
     public event EventHandler OnRecipeSuccess;
     public event EventHandler OnRecipeFailed;
-    private int _successedRecipedAmount;
+    private int _successedRecipedAmount; //Количество успешных заказов за один сеанс игры
     public static DeliveryManager Instance { get; private set; }
     [SerializeField] private RecipeListSO _recipeListSO;
 
@@ -19,7 +19,7 @@ public class DeliveryManager : MonoBehaviour
     private float _spawnRecipeTimer;
     private float _spawnRecipeTimerMax = 4f;
     private int _waitingRecipeMax = 4;
-    private float _recipeDuration = 15f; // Длительность рецепта
+    private float _recipeDuration = 20f; // Длительность рецепта
 
     private void Awake()
     {
@@ -98,6 +98,7 @@ public class DeliveryManager : MonoBehaviour
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
                     GameManager.Instance.IncreaseGameTime(15f); // Увеличение времени на 15 секунд
+
                     return;
                 }
             }
@@ -129,4 +130,5 @@ public class DeliveryManager : MonoBehaviour
     {
         return _recipeDuration;
     }
+
 }
