@@ -6,33 +6,24 @@ using UnityEngine.UI;
 
 public class DeliveryManagerSingleUI : MonoBehaviour
 {
-    // Визуализация появления текста и иконок рецептов
+    //Визуализация появления текста и иконок рецептов
 
-    [SerializeField] private TextMeshProUGUI _recipeNameText; // Текстовое поле для отображения названия рецепта
-    [SerializeField] private Transform _iconContainer; // Контейнер для иконок ингредиентов рецепта
-    [SerializeField] private Transform _iconTemplate; // Шаблон иконки ингредиента
+    [SerializeField] private TextMeshProUGUI _recipeNameText;
+    [SerializeField] private Transform _iconContainer;
+    [SerializeField] private Transform _iconTemplate;
+    [SerializeField] private Image _progressBar; // Новый компонент для отображения прогресса времени
 
-
-    [SerializeField] private Image _backgroundImage; // Изображение для фона, которое будет изменять цвет
-    private RecipeSO _recipeSO; // Текущий рецепт
-    private int _recipeIndex; // Индекс текущего рецепта
-    private float _maxTime; // Максимальное время для выполнения рецепта
-
-    [SerializeField] private Color _startColor; // Зеленый цвет для фона длительнисти рецепта
-    [SerializeField] private Color _endColor; // Красный цвет для фона длительнисти рецепта
+    private float _maxTime = 20f; // Максимальное время для рецепта
+    private float _currentTimer;
 
     private void Awake()
     {
         _iconTemplate.gameObject.SetActive(false);
     }
-
-    public void SetRecipeSO(RecipeSO recipeSO, int recipeIndex, float maxTime)
+    public void SetRecipeSO(RecipeSO _recipeSO,float timer)
     {
-        _recipeSO = recipeSO;
-        _recipeIndex = recipeIndex;
-        _maxTime = maxTime;
-
         _recipeNameText.text = _recipeSO.recipeName;
+        _currentTimer = timer;
 
         foreach (Transform child in _iconContainer)
         {
@@ -46,25 +37,21 @@ public class DeliveryManagerSingleUI : MonoBehaviour
             _iconTransform.gameObject.SetActive(true);
             _iconTransform.GetComponent<Image>().sprite = _kitchenObject._sprite;
         }
-
-        if (!GameManager.Instance.IsGamePlaing())
-        {
-            return;
-        }
-
-        float remainingTime = DeliveryManager.Instance.GetRemainingTimeForRecipe(_recipeIndex);
-        float fillAmount = Mathf.Clamp01(remainingTime / _maxTime);
-        _backgroundImage.fillAmount = fillAmount;
-        _backgroundImage.color = Color.Lerp(_endColor, _startColor, fillAmount);
-
-        if (remainingTime <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void Update()
     {
+        if (GameManager.Instance.IsGamePlaing()) // Проверка состояния игры
+        {
+            _currentTimer -= Time.deltaTime;
+            float progress = Mathf.Clamp01(_currentTimer / _maxTime);
+            _progressBar.fillAmount = progress;
+            _progressBar.color = Color.Lerp(Color.red, Color.green, progress);
 
+            if (_currentTimer <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+        }
     }
 }

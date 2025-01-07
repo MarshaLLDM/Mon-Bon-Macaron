@@ -16,17 +16,23 @@ public class RecipeTracker : MonoBehaviour
     {
         LoadSuccessedRecipedAmount();
         UpdateSuccessedRecipedText();
-        DeliveryManager.Instance.OnRecipeSuccess += HandleRecipeSuccess; // Подписка на событие
+        if (DeliveryManager.Instance != null)
+        {
+            DeliveryManager.Instance.OnRecipeSuccess += HandleRecipeSuccess; // Подписка на событие
+        }
     }
 
     private void OnDestroy()
     {
-        DeliveryManager.Instance.OnRecipeSuccess -= HandleRecipeSuccess; // Отписка от события
+        if (DeliveryManager.Instance != null)
+        {
+            DeliveryManager.Instance.OnRecipeSuccess -= HandleRecipeSuccess; // Отписка от события
+        }
     }
 
     private void HandleRecipeSuccess(object sender, System.EventArgs e)
     {
-        successedRecipedText.text = DeliveryManager.Instance.GetSucceseedReciped().ToString();
+        successedRecipedText.text = DeliveryManager.Instance.GetSucceseedRecipedMax().ToString();
         SaveSuccessedRecipedAmount();
         UpdateSuccessedRecipedText();
     }

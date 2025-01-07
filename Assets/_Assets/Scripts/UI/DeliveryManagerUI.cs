@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeliveryManagerUI : MonoBehaviour
 {
-    ////Визуализация добавления шаблонов
+    //Визуализация добавления шаблонов
 
     [SerializeField] private Transform _container;
     [SerializeField] private Transform _recipeTemplate;
@@ -40,15 +40,11 @@ public class DeliveryManagerUI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        List<RecipeSO> waitingRecipeSOList = DeliveryManager.Instance.GetWaitingRecipeSOList();
-        float recipeDuration = DeliveryManager.Instance.GetRecipeDuration();
-
-        for (int i = 0; i < waitingRecipeSOList.Count; i++)
+        foreach (RecipeWithTimer _recipeSO in DeliveryManager.Instance.GetWaitingRecipeList())
         {
-            RecipeSO recipeSO = waitingRecipeSOList[i];
-            Transform recipeTransform = Instantiate(_recipeTemplate, _container);
-            recipeTransform.gameObject.SetActive(true);
-            recipeTransform.GetComponent<DeliveryManagerSingleUI>().SetRecipeSO(recipeSO, i, recipeDuration); // 15 секунд для каждого рецепта
+            Transform _recipeTransform = Instantiate(_recipeTemplate, _container);
+            _recipeTransform.gameObject.SetActive(true);
+            _recipeTransform.GetComponent<DeliveryManagerSingleUI>().SetRecipeSO(_recipeSO.Recipe, _recipeSO.Timer);
         }
     }
 }

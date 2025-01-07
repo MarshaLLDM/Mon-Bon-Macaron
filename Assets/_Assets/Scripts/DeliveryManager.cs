@@ -6,129 +6,149 @@ using UnityEngine;
 
 public class DeliveryManager : MonoBehaviour
 {
+    //Ожидающие рецепты, которые можно приготовить
+
     public event EventHandler OnRecipeSpawned;
     public event EventHandler OnRecipeCompleted;
     public event EventHandler OnRecipeSuccess;
     public event EventHandler OnRecipeFailed;
-    private int _successedRecipedAmount; //Количество успешных заказов за один сеанс игры
+    public event EventHandler OnRecipeTimerExpired;
+    private int _successedRecipedAmount = 0; //Кол-во успешных рецептов за одну игру
+    private int _successedRecipedAmountMax; //Кол-во успешных рецептов за всю игру
     public static DeliveryManager Instance { get; private set; }
     [SerializeField] private RecipeListSO _recipeListSO;
 
-    private List<RecipeSO> _waitingRecipeSOList;
-    private List<float> _recipeTimers;
+    private List<RecipeWithTimer> _waitingRecipeList;
     private float _spawnRecipeTimer;
     private float _spawnRecipeTimerMax = 4f;
-    private int _waitingRecipeMax = 4;
-    private float _recipeDuration = 20f; // Длительность рецепта
+    private int _waitingRecipeMax = 4; //Максимальное кол-во рецептов в ожидании
 
     private void Awake()
     {
         Instance = this;
-        _waitingRecipeSOList = new List<RecipeSO>();
-        _recipeTimers = new List<float>();
+        _waitingRecipeList = new List<RecipeWithTimer>();
+        LoadSuccessedRecipedAmount();
+
     }
 
-    private void Update()
+    private void Update()   
     {
 
-        _spawnRecipeTimer -= Time.deltaTime;
+        _spawnRecipeTimer -= Time.deltaTime; //Уменьшение таймера для появления рецептов
         if (_spawnRecipeTimer < 0)
         {
             _spawnRecipeTimer = _spawnRecipeTimerMax;
 
-            if (_waitingRecipeSOList.Count < _waitingRecipeMax)
+            if (_waitingRecipeList.Count < _waitingRecipeMax) //Если количество рецептов меньше максимального, то будет генерация рандомного рецепта
             {
-                RecipeSO _waitingRecipeSo = _recipeListSO._recipeSOList[UnityEngine.Random.Range(0, _recipeListSO._recipeSOList.Count)];
-                _waitingRecipeSOList.Add(_waitingRecipeSo);
-                if (GameManager.Instance.IsGamePlaing()) //Проверка состояния игры - "IsGamePlaing"
-                {
-                    _recipeTimers.Add(_recipeDuration); // Добавляем таймер для нового рецепта
-                }
+                RecipeSO randomRecipe = _recipeListSO._recipeSOList[UnityEngine.Random.Range(0, _recipeListSO._recipeSOList.Count)]; //Берется рандомный рецепт
+                RecipeWithTimer newRecipe = new RecipeWithTimer { Recipe = randomRecipe, Timer = 20f };
 
+                _waitingRecipeList.Add(newRecipe); //Добавляется рецепт в ожидающий лист
 
                 OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
             }
         }
 
-        // Обновляем таймеры рецептов
-        for (int i = _recipeTimers.Count - 1; i >= 0; i--)
+        if (GameManager.Instance.IsGamePlaing()) // Проверка состояния игры
         {
-            _recipeTimers[i] -= Time.deltaTime;
-            if (_recipeTimers[i] < 0)
+            // Обновляем таймер для каждого рецепта
+            for (int i = _waitingRecipeList.Count - 1; i >= 0; i--)
             {
-                // Таймер истек, удаляем рецепт и вызываем ReduceGameTime
-                _waitingRecipeSOList.RemoveAt(i);
-                _recipeTimers.RemoveAt(i);
-                GameManager.Instance.ReduceGameTime(30f); // Уменьшение времени на 30 секунд
+                _waitingRecipeList[i].Timer -= Time.deltaTime;
+                if (_waitingRecipeList[i].Timer <= 0)
+                {
+                    _waitingRecipeList.RemoveAt(i);
+                    OnRecipeTimerExpired?.Invoke(this, EventArgs.Empty); 
+                }
             }
         }
     }
 
-    public void DeliverRecipe(PlateKitchenObject _plateKitchenObject)
+    public void DeliverRecipe(PlateKitchenObject _plateKitchenObject) //Функция доставки рецепта
     {
-        for (int i = 0; i < _waitingRecipeSOList.Count; i++)
+        for (int i = 0; i < _waitingRecipeList.Count; i++)
         {
-            RecipeSO _waitingRecipeSO = _waitingRecipeSOList[i];
+            RecipeWithTimer recipeWithTimer = _waitingRecipeList[i];
+            RecipeSO _waitingRecipeSO = recipeWithTimer.Recipe;
 
-            if (_waitingRecipeSO._kitchenObjects.Count == _plateKitchenObject.GetKitchenObjectsList().Count)
+            if (_waitingRecipeSO._kitchenObjects.Count == _plateKitchenObject.GetKitchenObjectsList().Count) //Есть нужное кол-во рецептов
             {
                 bool _plateContentsMatchesRecipe = true;
-                foreach (KitchenObject _recipeKitchenObjectSO in _waitingRecipeSO._kitchenObjects)
+                foreach (KitchenObject _recipeKitchenObjectSO in _waitingRecipeSO._kitchenObjects) //Проверка всех ингредиентов на рецепте
                 {
                     bool _ingredientFound = false;
-                    foreach (KitchenObject _plateKitchenObjectSO in _plateKitchenObject.GetKitchenObjectsList())
+                    foreach (KitchenObject _plateKitchenObjectSO in _plateKitchenObject.GetKitchenObjectsList()) //Проверка всех ингредиентов на тарелке
                     {
-                        if (_plateKitchenObjectSO == _recipeKitchenObjectSO)
+                        if (_plateKitchenObjectSO == _recipeKitchenObjectSO) //Проверка совпадают ли рецепты, которые из листа ожидания со списком рецептом
                         {
+                            //Они совпадают
                             _ingredientFound = true;
                             break;
                         }
                     }
-                    if (!_ingredientFound)
+                    if (!_ingredientFound) //Если не нашел
                     {
+                        //То такого ингредиента нет
                         _plateContentsMatchesRecipe = false;
                     }
                 }
                 if (_plateContentsMatchesRecipe)
                 {
+                    //Игрок приготов правильный рецепт
+
                     _successedRecipedAmount++;
-                    _waitingRecipeSOList.RemoveAt(i);
-                    _recipeTimers.RemoveAt(i);
+                    _successedRecipedAmountMax++;
+
+                    _waitingRecipeList.RemoveAt(i);
 
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
                     GameManager.Instance.IncreaseGameTime(15f); // Увеличение времени на 15 секунд
-
                     return;
                 }
             }
         }
+        //Не один из рецептов не подходит
+        //Игрок приготовоил неправильный рецепт
         OnRecipeFailed?.Invoke(this, EventArgs.Empty);
         GameManager.Instance.ReduceGameTime(30f); // Уменьшение времени на 30 секунд
     }
 
-    public List<RecipeSO> GetWaitingRecipeSOList()
+    public List<RecipeWithTimer> GetWaitingRecipeList()
     {
-        return _waitingRecipeSOList;
+        return _waitingRecipeList;
     }
 
     public int GetSucceseedReciped()
     {
         return _successedRecipedAmount;
     }
-
-    public float GetRemainingTimeForRecipe(int index)
+    public int GetSucceseedRecipedMax()
     {
-        if (index >= 0 && index < _recipeTimers.Count)
-        {
-            return _recipeTimers[index];
-        }
-        return 0f;
+        return _successedRecipedAmountMax;
     }
 
-    public float GetRecipeDuration()
+
+    private void OnDestroy()
     {
-        return _recipeDuration;
+        SaveSuccessedRecipedAmount();
     }
 
+    private void SaveSuccessedRecipedAmount()
+    {
+        PlayerPrefs.SetInt("SuccessedRecipedAmount", _successedRecipedAmountMax);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadSuccessedRecipedAmount()
+    {
+        _successedRecipedAmountMax = PlayerPrefs.GetInt("SuccessedRecipedAmount", 0);
+    }
+}
+
+public class RecipeWithTimer
+{
+    public RecipeSO Recipe { get; set; }
+    public float Timer { get; set; }
 }
