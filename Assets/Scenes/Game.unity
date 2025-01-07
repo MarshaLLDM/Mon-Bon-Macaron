@@ -5251,6 +5251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc9c24ebcd5e854592cb60630355485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _successedRecipedAmountMax: 31
   _recipeListSO: {fileID: 11400000, guid: e29f0e3bbc77a184fb7e3c6d9805cf87, type: 2}
 --- !u!4 &1396679959
 Transform:

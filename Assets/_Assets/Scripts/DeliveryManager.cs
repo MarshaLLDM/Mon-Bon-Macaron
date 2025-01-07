@@ -14,7 +14,7 @@ public class DeliveryManager : MonoBehaviour
     public event EventHandler OnRecipeFailed;
     public event EventHandler OnRecipeTimerExpired;
     private int _successedRecipedAmount = 0; //Кол-во успешных рецептов за одну игру
-    private int _successedRecipedAmountMax; //Кол-во успешных рецептов за всю игру
+    [SerializeField] private int _successedRecipedAmountMax; //Кол-во успешных рецептов за всю игру
     public static DeliveryManager Instance { get; private set; }
     [SerializeField] private RecipeListSO _recipeListSO;
 
