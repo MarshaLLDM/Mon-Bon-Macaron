@@ -74,4 +74,11 @@ public class RecipeTracker : MonoBehaviour
             successedRecipedText.text = $"{_successedRecipedAmount}";
         }
     }
+
+    public void DecrementSuccessedRecipedAmount(int amount)
+    {
+        _successedRecipedAmount -= amount;
+        SaveSuccessedRecipedAmount();
+        UpdateSuccessedRecipedText();
+    }
 }

@@ -120,11 +120,12 @@ public class DeliveryManager : MonoBehaviour
         return _waitingRecipeList;
     }
 
-    public int GetSucceseedReciped()
+    public int GetSucceseedReciped() //Метода получения кол-ва успешных рецептов за одну игру
     {
         return _successedRecipedAmount;
     }
-    public int GetSucceseedRecipedMax()
+
+    public int GetSucceseedRecipedMax() //Метода получения кол-ва успешных рецептов за всю игру
     {
         return _successedRecipedAmountMax;
     }
