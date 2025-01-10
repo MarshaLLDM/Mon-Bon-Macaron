@@ -96,13 +96,9 @@ public class SoundManager : MonoBehaviour
         PlaySound(_audioClipRefSO._warning, position);
     }
 
-    public void ChangeVolume() //Функция изменение грмкости
+    public void SetVolume(float volume) //Функция изменение грмкости
     {
-        _volume += .1f;
-        if (_volume > 1f)
-        {
-            _volume = 0f;
-        }
+        _volume = volume;
 
         PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, _volume); //Получение значения звука
         PlayerPrefs.Save(); //Сохранение значения звука

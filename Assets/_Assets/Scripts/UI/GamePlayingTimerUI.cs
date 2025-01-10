@@ -18,6 +18,9 @@ public class GamePlayingTimerUI : MonoBehaviour
         // Обновление текстового элемента
         float remainingTime = GameManager.Instance.GetGamePlayingTimer();
         int remainingSeconds = Mathf.CeilToInt(remainingTime);
-        _timerText.text = remainingSeconds.ToString() + " сек";
+        int minutes = remainingSeconds / 60;
+        int seconds = remainingSeconds % 60;
+
+        _timerText.text = string.Format("{0}:{1:00}", minutes, seconds);
     }
 }

@@ -22,13 +22,9 @@ public class MusicManager : MonoBehaviour
         _volume = PlayerPrefs.GetFloat(PLAYER_PREFS_MUSIC_EFFECTS_VOLUME, .3f); //Загрузка информации значений о музыке
         _audioSource.volume = _volume;
     }
-    public void ChangeVolume() //Функция изменение грмкости
+    public void SetVolume(float volume) //Функция изменение грмкости
     {
-        _volume += .1f;
-        if (_volume > 1f)
-        {
-            _volume = 0f;
-        }
+        _volume = volume;
         _audioSource.volume = _volume;
 
         PlayerPrefs.SetFloat(PLAYER_PREFS_MUSIC_EFFECTS_VOLUME, _volume); //Получение значения музыки

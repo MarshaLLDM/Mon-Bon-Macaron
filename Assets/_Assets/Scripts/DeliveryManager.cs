@@ -33,8 +33,9 @@ public class DeliveryManager : MonoBehaviour
 
     private void Update()   
     {
-
-        _spawnRecipeTimer -= Time.deltaTime; //Уменьшение таймера для появления рецептов
+        if (GameManager.Instance.IsGamePlaing()) // Проверка состояния игры
+        {
+            _spawnRecipeTimer -= Time.deltaTime; //Уменьшение таймера для появления рецептов
         if (_spawnRecipeTimer < 0)
         {
             _spawnRecipeTimer = _spawnRecipeTimerMax;
@@ -50,8 +51,7 @@ public class DeliveryManager : MonoBehaviour
             }
         }
 
-        if (GameManager.Instance.IsGamePlaing()) // Проверка состояния игры
-        {
+
             // Обновляем таймер для каждого рецепта
             for (int i = _waitingRecipeList.Count - 1; i >= 0; i--)
             {

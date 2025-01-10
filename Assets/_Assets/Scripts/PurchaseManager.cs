@@ -4,6 +4,7 @@ using UnityEngine;
 public class PurchaseManager : MonoBehaviour
 {
     //Скрипт для обработки логики покупок
+
     private const string PurchasedItemsKey = "PurchasedItems";
     private HashSet<string> purchasedItems = new HashSet<string>();
 

@@ -9,7 +9,6 @@ public class MainMenuUI : MonoBehaviour
     //Кнопки
 
     [SerializeField] private Button _playButton; //Кнопка игры
-    [SerializeField] private Button _settingsButton; //Кнопка настроек
 
     private void Awake()
     {
@@ -17,11 +16,6 @@ public class MainMenuUI : MonoBehaviour
         {
             Loading.Load(Loading.Scene.Game); //Загрузка сцены игры
         }); 
-
-        _settingsButton.onClick.AddListener(() => //Лямбда выражения 
-        {
-
-        });
 
         Time.timeScale = 1f;
     }
