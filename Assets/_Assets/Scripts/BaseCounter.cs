@@ -18,7 +18,7 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
 
     public virtual void Interact(Player _player)
     {
-        Debug.LogError("Срабатывет базовый счетчик");
+       // Debug.LogError("Срабатывет базовый счетчик");
     }
 
     public virtual void InteractAlternate(Player _player)

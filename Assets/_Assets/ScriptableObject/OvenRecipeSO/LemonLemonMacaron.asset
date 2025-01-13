@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc41c54f8438274da4504eb69b02aa1, type: 3}
   m_Name: LemonLemonMacaron
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: ab0a43fafe5ef0948b1fdb90a7d3f1c9, type: 2}
-  output: {fileID: 11400000, guid: d1490db8ae0ba1b429174754badbef18, type: 2}
-  _fryingTimerMax: 5
+  input: {fileID: 11400000, guid: f5d2f10a2203d0b4bae8ef8106f39e87, type: 2}
+  output: {fileID: 11400000, guid: 0979d2f712468d44aaf8743838f1563e, type: 2}
+  _fryingTimerMax: 3

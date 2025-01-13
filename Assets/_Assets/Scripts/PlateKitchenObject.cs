@@ -18,6 +18,8 @@ public class PlateKitchenObject : LinkKitchenObject
     [SerializeField] private List<KitchenObject> _validKitchenObjectsList1; // Первый список допустимых объектов
     [SerializeField] private List<KitchenObject> _validKitchenObjectsList2; // Второй список допустимых объектов
     [SerializeField] private List<KitchenObject> _validKitchenObjectsList3; // Третий список допустимых объектов
+    [SerializeField] private List<KitchenObject> _validKitchenObjectsList4; // Третий список допустимых объектов
+    [SerializeField] private List<KitchenObject> _validKitchenObjectsList5; // Третий список допустимых объектов
 
     private List<KitchenObject> _kitchenObjectsList;
     private List<KitchenObject> _currentValidList; // Текущий активный список допустимых объектов
@@ -44,6 +46,14 @@ public class PlateKitchenObject : LinkKitchenObject
             else if (IsValidIngredient(_kitchenObject, _validKitchenObjectsList3))
             {
                 _currentValidList = _validKitchenObjectsList3;
+            }
+            else if (IsValidIngredient(_kitchenObject, _validKitchenObjectsList4))
+            {
+                _currentValidList = _validKitchenObjectsList4;
+            }
+            else if (IsValidIngredient(_kitchenObject, _validKitchenObjectsList5))
+            {
+                _currentValidList = _validKitchenObjectsList5;
             }
             else
             {

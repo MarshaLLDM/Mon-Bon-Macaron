@@ -129,6 +129,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LemonMacaron
       objectReference: {fileID: 0}
+    - target: {fileID: 4811776355776075249, guid: 21b61f3b29fb1024f88c0ba3ac2584e8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0bafea2a26b2514fa47053392c3a66d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
