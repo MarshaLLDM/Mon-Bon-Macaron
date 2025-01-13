@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FistashkaInput
   m_EditorClassIdentifier: 
   _prefab: {fileID: 4090163171591508020, guid: 95f1b6aba26e3684bbbae0ae5abbba72, type: 3}
-  _sprite: {fileID: 21300000, guid: f1f50c7ef90b19741b26f2040806cf56, type: 3}
+  _sprite: {fileID: 21300000, guid: 1062726d0d6ab38488f6192b13540a9b, type: 3}
   _objectname: "\u0424\u0438\u0441\u0442\u0430\u0448\u043A\u043E\u0432\u0430\u044F
     \u043D\u0430\u0447\u0438\u043D\u043A\u0430"

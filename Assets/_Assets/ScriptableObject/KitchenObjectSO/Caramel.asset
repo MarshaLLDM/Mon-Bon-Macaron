@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Caramel
   m_EditorClassIdentifier: 
   _prefab: {fileID: 4090163171591508020, guid: c85e7be8ce764504e817e5aed5a92f5c, type: 3}
-  _sprite: {fileID: 21300000, guid: a70707bea68f1d64484c8ae86edd82d9, type: 3}
+  _sprite: {fileID: 21300000, guid: ef6a923e38ed5684e946633ac7df9205, type: 3}
   _objectname: "\u041A\u0430\u0440\u0430\u043C\u0435\u043B\u044C"

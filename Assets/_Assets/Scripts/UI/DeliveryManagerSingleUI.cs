@@ -13,7 +13,7 @@ public class DeliveryManagerSingleUI : MonoBehaviour
     [SerializeField] private Transform _iconTemplate;
     [SerializeField] private Image _progressBar; // Новый компонент для отображения прогресса времени
 
-    private float _maxTime = 20f; // Максимальное время для рецепта
+    private float _maxTime = 30f; // Максимальное время для рецепта
     private float _currentTimer;
 
     private void Awake()

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Chocolate
   m_EditorClassIdentifier: 
   _prefab: {fileID: 4090163171591508020, guid: 8e25df6dc31064b46941b39f770ecfce, type: 3}
-  _sprite: {fileID: 21300000, guid: a70707bea68f1d64484c8ae86edd82d9, type: 3}
+  _sprite: {fileID: 21300000, guid: 23225b9e1bc419b4db22756c013ca127, type: 3}
   _objectname: "\u0428\u043E\u043A\u043E\u043B\u0430\u0434"

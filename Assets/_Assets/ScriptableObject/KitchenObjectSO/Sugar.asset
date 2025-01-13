@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Sugar
   m_EditorClassIdentifier: 
   _prefab: {fileID: 1014885648694767014, guid: c48e16e326cfa694390d4b8ef11c6e2b, type: 3}
-  _sprite: {fileID: 21300000, guid: 91e8fe3de9249fc44b7bdd8050062896, type: 3}
+  _sprite: {fileID: 21300000, guid: ee1b98831f4d7e14e93d991a4fed1a75, type: 3}
   _objectname: "\u0421\u0430\u0445\u0430\u0440"

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: VanilInput
   m_EditorClassIdentifier: 
   _prefab: {fileID: 4090163171591508020, guid: 733ffe49bc1561949929f0252b8c9487, type: 3}
-  _sprite: {fileID: 21300000, guid: 91e8fe3de9249fc44b7bdd8050062896, type: 3}
+  _sprite: {fileID: 21300000, guid: 99f02ec3e3f12784db241d0ebfa46be5, type: 3}
   _objectname: "\u0412\u0430\u043D\u0438\u043B\u044C\u043D\u0430\u044F \u043D\u0430\u0447\u0438\u043D\u043A\u0430"

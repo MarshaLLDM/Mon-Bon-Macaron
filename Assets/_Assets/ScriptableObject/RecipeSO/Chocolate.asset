@@ -15,4 +15,4 @@ MonoBehaviour:
   _kitchenObjects:
   - {fileID: 11400000, guid: d29054a37488e0d448e09b0c212129b7, type: 2}
   - {fileID: 11400000, guid: 78bb53be1f552eb47b0320657b8b2182, type: 2}
-  recipeName: "\u0428\u043E\u043A\u043E\u043B\u0430\u0434"
+  recipeName: "\u0428\u043E\u043A\u043E\u043B\u0430\u0434\u043D\u043E\u0435 \u043F\u0438\u0440\u043E\u0436\u043D\u043E\u0435"

@@ -20,7 +20,7 @@ public class DeliveryManager : MonoBehaviour
 
     private List<RecipeWithTimer> _waitingRecipeList;
     private float _spawnRecipeTimer;
-    private float _spawnRecipeTimerMax = 4f;
+    private float _spawnRecipeTimerMax = 5f;
     private int _waitingRecipeMax = 4; //Максимальное кол-во рецептов в ожидании
 
     private void Awake()
@@ -43,7 +43,7 @@ public class DeliveryManager : MonoBehaviour
             if (_waitingRecipeList.Count < _waitingRecipeMax) //Если количество рецептов меньше максимального, то будет генерация рандомного рецепта
             {
                 RecipeSO randomRecipe = _recipeListSO._recipeSOList[UnityEngine.Random.Range(0, _recipeListSO._recipeSOList.Count)]; //Берется рандомный рецепт
-                RecipeWithTimer newRecipe = new RecipeWithTimer { Recipe = randomRecipe, Timer = 20f };
+                RecipeWithTimer newRecipe = new RecipeWithTimer { Recipe = randomRecipe, Timer = 30f };
 
                 _waitingRecipeList.Add(newRecipe); //Добавляется рецепт в ожидающий лист
 
