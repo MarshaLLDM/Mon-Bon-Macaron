@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LemonInput
   m_EditorClassIdentifier: 
   _prefab: {fileID: 4090163171591508020, guid: ceebcf8ac1525df438bf94af122da3c1, type: 3}
-  _sprite: {fileID: 21300000, guid: 4c70e6f9f1909024cb55fb5400f9d3ec, type: 3}
+  _sprite: {fileID: 21300000, guid: a70707bea68f1d64484c8ae86edd82d9, type: 3}
   _objectname: "\u041B\u0438\u043C\u043E\u043D\u043D\u0430\u044F \u043D\u0430\u0447\u0438\u043D\u043A\u0430"
