@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a498224eaab6a3245af77fb4f5481f44, type: 3}
-  m_Name: test
+  m_Name: Discount5
   m_EditorClassIdentifier: 
-  itemName: est
-  itemImage: {fileID: 21300000, guid: 4c70e6f9f1909024cb55fb5400f9d3ec, type: 3}
-  itemDescription: dasd
-  itemPrice: 10
+  itemName: "5% \u0421\u041A\u0418\u0414\u041A\u0410"
+  itemImage: {fileID: 21300000, guid: 22adee9abe46d544b816b29dee3748e3, type: 3}
+  itemDescription: HELLO5
+  itemPrice: 5
+  itemPriceString: "5 \u041C\u041E\u041D\u0411\u041E\u041D\u041E\u0412"

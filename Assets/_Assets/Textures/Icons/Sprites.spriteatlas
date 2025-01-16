@@ -40,8 +40,8 @@ SpriteAtlas:
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
-      enableTightPacking: 1
-      enableAlphaDilation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 1
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
@@ -64,12 +64,15 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 4c70e6f9f1909024cb55fb5400f9d3ec, type: 3}
     - {fileID: 2800000, guid: ae09e603fe29437438f53656651dfdb8, type: 3}
     - {fileID: 2800000, guid: 3928afb5321bb3d489bbd4ac581b29a2, type: 3}
+    - {fileID: 2800000, guid: 22adee9abe46d544b816b29dee3748e3, type: 3}
+    - {fileID: 2800000, guid: 93871b31bb47ea24e8e7987e39d2f66c, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
     - 0ca8d84039ef48d47a9d35045e8ba92f: 21300000
     - a4a30a507a1311a438ecf1507369b28d: 21300000
+    - 93871b31bb47ea24e8e7987e39d2f66c: 21300000
     - 0d6e1281049dccc4189bf308b2ccf331: 21300000
     - ae09e603fe29437438f53656651dfdb8: 21300000
     - 196b810484b302947abf47b1f654e2ff: 21300000
@@ -81,6 +84,7 @@ SpriteAtlas:
     - 2a2dd3591bc969d48a2e16df4de43454: 21300000
     - cc973f9901fd14847acf8b7987f6c0e9: 21300000
     - 4c70e6f9f1909024cb55fb5400f9d3ec: 21300000
+    - 22adee9abe46d544b816b29dee3748e3: 21300000
     - 1062726d0d6ab38488f6192b13540a9b: 21300000
     - b62dd98d93a2a3a4f84244039d672177: 21300000
     - 6bc611ed65b81ba4eb4736b7799c070f: 21300000
@@ -91,6 +95,7 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 0ca8d84039ef48d47a9d35045e8ba92f, type: 3}
   - {fileID: 21300000, guid: a4a30a507a1311a438ecf1507369b28d, type: 3}
+  - {fileID: 21300000, guid: 93871b31bb47ea24e8e7987e39d2f66c, type: 3}
   - {fileID: 21300000, guid: 0d6e1281049dccc4189bf308b2ccf331, type: 3}
   - {fileID: 21300000, guid: ae09e603fe29437438f53656651dfdb8, type: 3}
   - {fileID: 21300000, guid: 196b810484b302947abf47b1f654e2ff, type: 3}
@@ -102,6 +107,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2a2dd3591bc969d48a2e16df4de43454, type: 3}
   - {fileID: 21300000, guid: cc973f9901fd14847acf8b7987f6c0e9, type: 3}
   - {fileID: 21300000, guid: 4c70e6f9f1909024cb55fb5400f9d3ec, type: 3}
+  - {fileID: 21300000, guid: 22adee9abe46d544b816b29dee3748e3, type: 3}
   - {fileID: 21300000, guid: 1062726d0d6ab38488f6192b13540a9b, type: 3}
   - {fileID: 21300000, guid: b62dd98d93a2a3a4f84244039d672177, type: 3}
   - {fileID: 21300000, guid: 6bc611ed65b81ba4eb4736b7799c070f, type: 3}
@@ -111,6 +117,7 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - 1
   - ButtonBackground
+  - CaramelMacaron
   - Cross
   - Pause_36731
   - 3
@@ -122,6 +129,7 @@ SpriteAtlas:
   - Hand
   - 5
   - Limone
+  - Champagne
   - Fistashka
   - 4
   - Adv

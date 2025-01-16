@@ -9,4 +9,5 @@ public class ShopItemSO : ScriptableObject
     public Sprite itemImage;
     public string itemDescription;
     public int itemPrice;
+    public string itemPriceString;
 }

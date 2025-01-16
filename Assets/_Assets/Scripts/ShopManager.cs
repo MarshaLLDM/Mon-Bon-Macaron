@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
 
-    [SerializeField] private Image _backGround;
     [SerializeField] private RecipeTracker _recipeTracker; // Ссылка на RecipeTracker
     [SerializeField] private PurchaseManager _purchaseManager; // Ссылка на PurchaseManager
 
@@ -27,7 +26,6 @@ public class ShopManager : MonoBehaviour
 
     private void Start()
     {
-      //  DisableBackground();
         PopulateShopPanel();
         _shopPanel.SetActive(false);
         _extraWindow1.SetActive(false);
@@ -53,26 +51,34 @@ public class ShopManager : MonoBehaviour
                 }
             }
 
-            var text = itemContainer.GetComponentInChildren<TextMeshProUGUI>(); // Получаем компонент Text для имени товара
-
-            // Устанавливаем изображение и текст
-            if (childImage != null)
+            var textComponents = itemContainer.GetComponentsInChildren<TextMeshProUGUI>(); // Получаем компонент Text для имени товара
+            if (textComponents.Length >= 2)
             {
-                childImage.sprite = shopItem.itemImage; // Устанавливаем изображение из shopItem
-            }
+                var primaryText = textComponents[0]; // Основной текст
+                var secondaryText = textComponents[1]; // Второй текст
 
-            if (text != null)
-            {
-                text.text = shopItem.itemName; // Устанавливаем имя товара
-            }
+                // Устанавливаем изображения и тексты
+                if (childImage != null)
+                {
+                    childImage.sprite = shopItem.itemImage; // Устанавливаем изображение из shopItem
+                }
 
+                if (primaryText != null)
+                {
+                    primaryText.text = shopItem.itemPriceString; // Устанавливаем имя товара
+                }
+
+                if (secondaryText != null)
+                {
+                    secondaryText.text = shopItem.itemName; // Устанавливаем описание товара
+                }
+            }
             button.onClick.AddListener(() => OnItemButtonClicked(shopItem));
         }
     }
 
     public void ShowShopPanel()
     {
-        //EnableBackground();
         _shopPanel.SetActive(true);
     }
 
@@ -100,14 +106,4 @@ public class ShopManager : MonoBehaviour
     {
         _extraWindow2.SetActive(true);
     }
-
-   /* private void DisableBackground() // Функция для отключения фона
-    {
-        _backGround.gameObject.SetActive(false);
-    }
-
-    private void EnableBackground() // Функция для включения фона
-    {
-        _backGround.gameObject.SetActive(true);
-    }*/
 }
