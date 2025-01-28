@@ -61,9 +61,24 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fc4701083d056604198c09d373a81fe2,
         type: 3}
       propertyPath: m_Name
-      value: Macaron (1)
+      value: LemonMacaron
       objectReference: {fileID: 0}
     - target: {fileID: 2464032485589455774, guid: fc4701083d056604198c09d373a81fe2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4af819873c275cc4780874b0767d7d43, type: 2}
+    - target: {fileID: 2528542569862621480, guid: fc4701083d056604198c09d373a81fe2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0bafea2a26b2514fa47053392c3a66d, type: 2}
+    - target: {fileID: 4007395935441832440, guid: fc4701083d056604198c09d373a81fe2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4af819873c275cc4780874b0767d7d43, type: 2}
+    - target: {fileID: 4423792276805594611, guid: fc4701083d056604198c09d373a81fe2,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
