@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,8 @@ public class DeliveryManagerSingleUI : MonoBehaviour
     [SerializeField] private Transform _iconContainer;
     [SerializeField] private Transform _iconTemplate;
     [SerializeField] private Image _progressBar; // Новый компонент для отображения прогресса времени
+    [SerializeField] private DeliveryResultUI _deliveryResultUI; // Ссылка на DeliveryResultUI
+
 
     private float _maxTime = 30f; // Максимальное время для рецепта
     private float _currentTimer;
@@ -51,6 +54,8 @@ public class DeliveryManagerSingleUI : MonoBehaviour
             if (_currentTimer <= 0)
             {
                 gameObject.SetActive(false);
+                GameManager.Instance.ReduceGameTime(20f); // Уменьшение времени на 30 секунд
+                _deliveryResultUI.ShowTimeReducedMessage(); // Вызов метода для отображения сообщения
             }
         }
     }

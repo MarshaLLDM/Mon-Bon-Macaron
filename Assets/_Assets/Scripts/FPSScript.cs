@@ -10,6 +10,15 @@ public class FPSScript : MonoBehaviour
     // Таймер для обновления значения FPS
     private float deltaTime = 0.0f;
 
+    void Start()
+    {
+        // Устанавливаем целевой FPS на 120
+        Application.targetFrameRate = 120;
+
+        // Отключаем V-Sync (если необходимо)
+        QualitySettings.vSyncCount = 0;
+    }
+
     void Update()
     {
         // Обновляем таймер

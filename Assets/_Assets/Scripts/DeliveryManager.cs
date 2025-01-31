@@ -31,6 +31,11 @@ public class DeliveryManager : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        GameManager.Instance.OnStatedChanged += GameManager_OnStatedChanged;
+    }
+
     private void Update()   
     {
         if (GameManager.Instance.IsGamePlaing()) // Проверка состояния игры
@@ -98,7 +103,7 @@ public class DeliveryManager : MonoBehaviour
                     //Игрок приготов правильный рецепт
 
                     _successedRecipedAmount++;
-                    _successedRecipedAmountMax++;
+                   // _successedRecipedAmountMax++;
 
                     _waitingRecipeList.RemoveAt(i);
 
@@ -115,6 +120,17 @@ public class DeliveryManager : MonoBehaviour
         GameManager.Instance.ReduceGameTime(30f); // Уменьшение времени на 30 секунд
     }
 
+    private void GameManager_OnStatedChanged(object sender, System.EventArgs e)
+    {
+        if (!GameManager.Instance.IsGamePlaing())
+        {
+            // Если игра завершена, обновляем _successedRecipedAmountMax и выходим
+            _successedRecipedAmountMax += _successedRecipedAmount;
+            SaveSuccessedRecipedAmount();
+            return;
+        }
+    }
+
     public List<RecipeWithTimer> GetWaitingRecipeList()
     {
         return _waitingRecipeList;
@@ -129,7 +145,6 @@ public class DeliveryManager : MonoBehaviour
     {
         return _successedRecipedAmountMax;
     }
-
 
     private void OnDestroy()
     {

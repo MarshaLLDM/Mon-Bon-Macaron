@@ -29,11 +29,10 @@ public class DeliveryResultUI : MonoBehaviour
     {
         DeliveryManager.Instance.OnRecipeSuccess += DeliveryManager_OnRecipeSuccess;
         DeliveryManager.Instance.OnRecipeFailed += DeliveryManager_OnRecipeFailed;
-
         gameObject.SetActive(false);
     }
 
-    private void DeliveryManager_OnRecipeFailed(object sender, System.EventArgs e)
+    private void DeliveryManager_OnRecipeFailed(object sender, System.EventArgs e) //Окно с сообщением о неудачной доставке
     {
         gameObject.SetActive(true);
         _animator.SetTrigger(POPUP);
@@ -42,12 +41,22 @@ public class DeliveryResultUI : MonoBehaviour
         _messageText.text = "Неверный\nзаказ";
     }
 
-    private void DeliveryManager_OnRecipeSuccess(object sender, System.EventArgs e)
+    private void DeliveryManager_OnRecipeSuccess(object sender, System.EventArgs e) //Окно с сообщением о успешной доставке
     {
         gameObject.SetActive(true);
         _animator.SetTrigger(POPUP);
         _backgroundImage.color = _successColor;
         _iconImage.sprite = _successSprite;
         _messageText.text = "Успешный\nзаказ";
+    }
+
+
+    public void ShowTimeReducedMessage() //Окно с сообщением о сокращении времени
+    {
+        gameObject.SetActive(true);
+        _animator.SetTrigger(POPUP);
+        _backgroundImage.color = _faliedColor;
+        _iconImage.sprite = _failedSprite;
+        _messageText.text = "— 20 секунд";
     }
 }
