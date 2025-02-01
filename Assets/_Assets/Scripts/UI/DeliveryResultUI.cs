@@ -57,6 +57,6 @@ public class DeliveryResultUI : MonoBehaviour
         _animator.SetTrigger(POPUP);
         _backgroundImage.color = _faliedColor;
         _iconImage.sprite = _failedSprite;
-        _messageText.text = "Ч 20 секунд";
+        _messageText.text = "Ч15 секунд";
     }
 }

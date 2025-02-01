@@ -54,7 +54,7 @@ public class DeliveryManagerSingleUI : MonoBehaviour
             if (_currentTimer <= 0)
             {
                 gameObject.SetActive(false);
-                GameManager.Instance.ReduceGameTime(20f); // Уменьшение времени на 30 секунд
+                GameManager.Instance.ReduceGameTime(15f); // Уменьшение времени на 15 секунд
                 _deliveryResultUI.ShowTimeReducedMessage(); // Вызов метода для отображения сообщения
             }
         }
