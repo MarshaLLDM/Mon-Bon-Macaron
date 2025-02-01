@@ -14,11 +14,18 @@ public class ObjectSelectionUI : MonoBehaviour
     [SerializeField] private GameObject _selectionPanel; //Объект для отображения окна
     [SerializeField] private GameObject _horizontalGroup; //Объект для спавна ингридиентов
     [SerializeField] private GameObject _containerPrefab; // Префаб контейнера с дочерней кнопкой
+    [SerializeField] private Button _closePanels; //Кнопка закрытия
     [SerializeField] private List<KitchenObject> kitchenObjects; //Список ингридиентов
+
 
     private Player _playerMovement; // Ссылка на скрипт движения игрока
 
     public event Action<KitchenObject> OnObjectSelected;
+
+    private void Awake()
+    {
+        _closePanels.onClick.AddListener(ClosePanel);
+    }
 
     private void Start()
     {
@@ -54,6 +61,12 @@ public class ObjectSelectionUI : MonoBehaviour
     private void SelectObject(KitchenObject kitchenObject)
     {
         OnObjectSelected?.Invoke(kitchenObject);
+        _selectionPanel.SetActive(false);
+        _playerMovement.enabled = true;
+    }
+
+    private void ClosePanel()
+    {
         _selectionPanel.SetActive(false);
         _playerMovement.enabled = true;
     }
